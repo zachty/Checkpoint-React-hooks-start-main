@@ -18,13 +18,13 @@ app.use(morgan('dev'));
 app.get('/api/pets', (req, res) => {
   // Wanna see what would happen if this endpoint were to fail? Uncomment
   // this line and comment out the other responses:
-  // res.sendStatus(500)
+  // res.sendStatus(500);
 
   // Wanna see what would happen if this endpoint were to take a whole second?
   // Uncomment this line and comment out the other responses:
   // setTimeout(() => {
-  //   res.json(getPets())
-  // }, 1000)
+  //   res.json(getPets());
+  // }, 5000);
 
   // This is how this endpoint SHOULD behave:
   res.json(getPets());

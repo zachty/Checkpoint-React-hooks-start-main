@@ -1,6 +1,7 @@
 body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   text-align: center;
+  background-color: aquamarine;
 }
 
 .pet-list {
@@ -10,6 +11,7 @@ body {
 }
 
 .single-pet {
+  border-radius: 15px;
   width: 15rem;
   margin: 0.5rem;
   padding: 0.5rem;
@@ -20,7 +22,73 @@ body {
   background-color: cornflowerblue;
 }
 
+.button {
+  border-radius: 20px;
+  border: black solid 2px;
+  box-sizing: border-box;
+  width: 14rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background-color: lightcoral;
+}
+
+.button.adopted {
+  background-color: cornflowerblue;
+}
+
+.button:hover {
+  background-color: rgba(240, 128, 128, 0.5);
+  transition-duration: 1s;
+}
+.button.adopted:hover {
+  background-color: rgba(100, 148, 237, 0.5);
+  transition-duration: 1s;
+}
+
+.button:active {
+  background-color: rgba(240, 248, 255, 0);
+}
+.button.adopted:active {
+  background-color: rgba(240, 248, 255, 0);
+}
+
 .delete-pet {
+  border-radius: 15px;
+  border: black solid 2px;
+
   background-color: orange;
   margin: 0.5rem;
+}
+.delete-pet:hover {
+  background-color: red;
+  transition-duration: 1s;
+}
+
+.add-pet {
+  display: flex;
+  justify-content: center;
+}
+form {
+  width: 40rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.form-labels,
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: space-evenly;
+}
+
+.form-labels > *,
+.form-fields > *,
+.submit-button > * {
+  margin: 3px;
+  padding: 3px;
+}
+.submit-button {
+  width: 40rem;
 }

@@ -10,7 +10,13 @@ function PetList(props) {
         {props.pets.map((pet) =>
           pet.species === props.selectedSpecies ||
           props.selectedSpecies === '' ? (
-            <SinglePet pet={pet} key={pet.id} />
+            <SinglePet
+              key={pet.id}
+              pet={pet}
+              adoptedList={props.adoptedList}
+              setAdoptedList={props.setAdoptedList}
+              handleClickDelete={props.handleClickDelete}
+            />
           ) : (
             <></>
           )
