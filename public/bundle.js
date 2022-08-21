@@ -16,20 +16,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _SinglePet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SinglePet */ "./src/components/SinglePet.js");
 
-
-var cody = {
-  id: 2,
-  name: 'Cody',
-  description: 'Adorable pug who loves to hug',
-  species: 'dog'
-}; // PetList only renders one SinglePet. We'd like it to render a list of pets,
+ // PetList only renders one SinglePet. We'd like it to render a list of pets,
 // passed in as props.pets. Don't forget to add a unique key to each one!
 
-function PetList() {
+function PetList(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "pet-list"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SinglePet__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    pet: cody
+  }, props.pets.map(function (pet) {
+    return pet.species === props.selectedSpecies || props.selectedSpecies === '' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SinglePet__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      pet: pet,
+      key: pet.id
+    }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null);
   })));
 }
 
@@ -52,6 +49,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _PetList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PetList */ "./src/components/PetList.js");
 /* harmony import */ var _petdata__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../petdata */ "./src/petdata.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
  // We'll render these sample pets for now. Later, we'll instead fetch the list
 // of pets from the server! We won't need samplePets after that.
@@ -59,8 +68,29 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Root = function Root() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Adoption Center"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_PetList__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    pets: _petdata__WEBPACK_IMPORTED_MODULE_2__["default"]
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default().useState(''),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      selectedSpecies = _React$useState2[0],
+      setSelectedSpecies = _React$useState2[1];
+
+  function handleChange(type) {
+    console.log(type);
+    setSelectedSpecies(type);
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Adoption Center"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
+    onChange: function onChange() {
+      return handleChange(event.target.value);
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+    value: ""
+  }, "all"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+    value: "cat"
+  }, "cats"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+    value: "dog"
+  }, "dogs")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_PetList__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    pets: _petdata__WEBPACK_IMPORTED_MODULE_2__["default"],
+    selectedSpecies: selectedSpecies
   }));
 };
 
@@ -81,12 +111,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-function SinglePet() {
+
+function SinglePet(props) {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default().useState(false),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      adopted = _React$useState2[0],
+      setAdopted = _React$useState2[1];
+
+  function handleClickAdopt() {
+    setAdopted(!adopted);
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "single-pet"
-  });
+    className: adopted ? 'single-pet adopted' : 'single-pet'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, props.pet.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, props.pet.species), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, props.pet.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick() {
+      return handleClickAdopt();
+    }
+  }, "Toggle Status"));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SinglePet);

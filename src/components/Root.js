@@ -6,13 +6,22 @@ import PetList from './PetList';
 import samplePets from '../petdata';
 
 const Root = () => {
-
+  const [selectedSpecies, setSelectedSpecies] = React.useState('');
+  function handleChange(type) {
+    console.log(type);
+    setSelectedSpecies(type);
+  }
   return (
     <>
       <h1>Adoption Center</h1>
-      <PetList pets={samplePets} />
+      <select onChange={() => handleChange(event.target.value)}>
+        <option value="">all</option>
+        <option value="cat">cats</option>
+        <option value="dog">dogs</option>
+      </select>
+      <PetList pets={samplePets} selectedSpecies={selectedSpecies} />
     </>
-  )
-}
+  );
+};
 
 export default Root;
